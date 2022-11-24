@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0；
+}
+.help-body{
+    background-image: url(./image/background2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 1489px;
+    height: 712px;
+}
+.navigator ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.navigator li{
+    float: left;
+}
+.navigator a:link,a:visited
+{
+display:block;
+width:140px;
+font-weight:bold;
+color:#FFFFFF;
+background-color:#bebebe;
+text-align:center;
+padding:15px;
+text-decoration:none;
+text-transform:uppercase;
+}
+.navigator a:hover,a:active
+{
+background-color:#e6e6e6;
+}

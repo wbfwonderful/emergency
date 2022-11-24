@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<script src="js/jquery.min.js"></script><!--导入一个jquery包-->
+<!--中部-->
+<div id="login_body">
+    <div class="login_b_center">
+        <div class="login_bg">
+            <h2>密码登录</h2>
+            <form action="#" id="login">
+<!--                //用户名-->
+                <div class="userName">
+                    <img src="./image/userName.jpg" style="width: 35px;float: left;">
+                    <input type="text" id="name">
+                </div>
+<!--                //密码-->
+                <div class="password">
+                    <img src="./image/password.jpg" style="width: 35px;float: left;">
+                    <input type="password" id="pwd">
+                    
+                   
+                </div>
+                <div class="quanxian">
+                    <p style="font-size: 20px;">权限：
+                    <select name="selectList" style="font-size: 20px;" id="type">
+                        <option value="1">救护车</option>
+                        <option value="2">调度中心</option>
+                    </select>
+                </p>
+                </div>
+<!--                //登录按钮-->
+                <div class="login_btn">
+                   
+                         <input type="button" value="登录"  onclick="send()">
+                    
+                </div>
+                <div class="forgot_password">
+                    <a href="forget.html">忘记密码</a>
+                    <a href="regist.html">注册账号</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+	function send(){
+		var name = $("#name").val();
+		var pwd = $("#pwd").val();
+		var type = $("#type").val();
+		
+		if(name == "test1" && pwd == "123456" && type == 1){
+
+			window.location.href="ambulance.html";
+			var t1 = "欢迎您" + name + "点击继续";
+			alert(t1);
+			
+		} else if(name == "test2" && pwd == "123456" && type == 2){
+			
+			window.location.href="center.html";
+			
+			alert('欢迎来到调度中心！点击继续');
+		
+		}else {
+			
+			alert("请输入正确的账号或密码！");
+		}
+		
+		
+	}
+		
+</script>
+
+</html>

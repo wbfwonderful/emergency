@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+.rcd-body{
+   background-image: url(../image/backgroung1.png);
+   background-size: cover;
+   background-repeat: no-repeat;
+   width: auto;
+   height: 712px;
+}
+
+.navigator ul{
+ list-style-type: none;
+ margin: 0;
+ padding: 0;
+ overflow: hidden;
+ /* position: relative; */
+}
+.navigator li{
+ float: left;
+}
+.navigator a:link,a:visited
+{
+display:block;/*转换为块级元素*/
+width:140px;
+font-weight:bold;
+color:#FFFFFF;
+background-color:#bebebe;
+text-align:center;
+padding:15px;
+text-decoration:none;
+text-transform:uppercase;
+}
+.navigator a:hover,a:active
+{
+background-color:#e6e6e6;
+}
+.navigator ul>li>ul{
+ list-style-type: none;
+ margin: 0;
+ padding: 0;
+ overflow: hidden; 
+ display: none;/*遮住*/
+ position: absolute; 
+ /* 设置最高层,防止被下方图片遮住 */
+ z-index: 10;
+}
+.navigator ul li:hover ul{
+ /* 设置二级菜单鼠标移动的属性 */
+ display: block;
+ width: auto;
+ font-weight:bold;
+ color:#FFFFFF;
+ background-color:#bebebe;
+ text-align:center;
+ text-decoration:none;
+ text-transform:uppercase;
+
+}
+.navigator ul li ul li{
+ float:none;
+}
+
+.box{
+    width: auto;
+    height: 661px;
+    /* background-color: aqua; */
+    padding-top: 30px;
+}
+.scope div,.submit-title{
+    width: auto;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: #b7b7b7 solid 1px;
+}
+.submit-title{
+    
+    color: #737373;
+    font-size: 16px;
+}
+.submit-title span{
+    display:inline-block;
+    text-align: center;
+    width: 280px;
+    
+}
+.scope span{
+    display:inline-block;
+    text-align: center;
+    font-size: 16px;
+    width: 280px;
+}
+
+.status{
+    padding-left: 200px;
+}
+.T-status{
+    padding-left: 200px;
+    color: green;
+}
+.F-status{
+    padding-left: 200px;
+    color: red;
+}

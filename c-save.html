@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>救助页面</title>
+    
+    <link rel="stylesheet" href="css/c-save.css">
+    
+	<script type="text/javascript">
+		window._AMapSecurityConfig = {
+			securityJsCode: '81f44132b292215affec2c457b0cda18',
+		}
+	</script>
+	<script type="text/javascript"
+		src="https://webapi.amap.com/maps?v=2.0&key=17ae823e8343ff3730aa0e24a0470015"></script>
+	<script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+<body>
+    <div class="save-body">
+        <div class="navigator">
+            <ul>
+                <li><a href="center.html">首页</a></li>
+                <li><a href="info.html">消息</a></li>
+                <li><a href="c-recording.html">接收记录</a></li>
+				<li><a href="c-save.html">当前救援</a></li>
+
+                <li><a href="">联系交警</a></li>
+                <li style="float: right;"><a href="login.html">退出</a></li>    
+                           
+            </ul>
+        </div>
+        <div class="map">
+             <div class="p">对方位置</div>
+             <div class="map-body" id="container"></div>
+             
+        </div>
+        
+        
+    </div>
+</body>
+
+<script>
+	var map;
+	map = new AMap.Map("container", {
+		resizeEnable: true,
+		zoom: 12, //缩放级别
+		center: [112.930116, 28.228304], //中心点坐标-岳麓区
+	});
+
+	var route;
+	//绘制初始路径
+	var path = [];
+	path.push([112.936703, 28.160130]);
+	path.push([112.991260, 28.139728]);
+
+
+	map.plugin("AMap.DragRoute", function () {
+		route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE); //构造拖拽导航类
+		route.search(); //查询导航路径并开启拖拽导航
+	});
+	
+	var m1 = new AMap.Marker({
+        map: map,
+        draggable:true,
+        position: new AMap.LngLat(112.936703, 28.160130)
+    });
+    var m2 = new AMap.Marker({
+        map: map,
+        draggable:true,
+        position:new AMap.LngLat(112.991260, 28.139728)
+    });
+    map.setFitView();
+    
+    var line = new AMap.Polyline({
+      	strokeColor:'#80d8ff',
+      	isOutline:true,
+      	outlineColor:'white'
+    });
+    line.setMap(map);
+    var text = new AMap.Text({
+      	text:'',
+      	style:{'background-color':'#29b6f6',
+				'border-color':'#e1f5fe',
+				'font-size':'12px'}
+    });
+    text.setMap(map)
+    function computeDis(){
+        var p1 = m1.getPosition();
+        var p2 = m2.getPosition();
+        var textPos = p1.divideBy(2).add(p2.divideBy(2));
+        var distance = Math.round(p1.distance(p2));
+        var path = [p1,p2];
+        line.setPath(path);
+        text.setText('两点相距'+distance+'米')
+        text.setPosition(textPos)
+    }
+    computeDis();
+    m1.on('dragging', computeDis)
+    m2.on('dragging', computeDis)
+
+
+
+</script>
+
+
+</html>

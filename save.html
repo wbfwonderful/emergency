@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>救助页面</title>
+	<link rel="stylesheet" href="css/save.css">
+	<script type="text/javascript">
+		window._AMapSecurityConfig = {
+			securityJsCode: '81f44132b292215affec2c457b0cda18',
+		}
+	</script>
+
+	<script type="text/javascript"
+		src="https://webapi.amap.com/maps?v=2.0&key=17ae823e8343ff3730aa0e24a0470015"></script>
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <script src="js/jquery.min.js"></script><!--导入一个jquery包-->
+</head>
+
+<body>
+	<div class="save-body">
+		<div class="navigator">
+			<ul>
+				<li><a href="ambulance.html">首页</a></li>
+				<li>
+					<a href="">帮助</a>
+					<ul>
+						<li><a href="">常见问题</a></li>
+						<li><a href="">反馈</a></li>
+						<li><a href="">客服</a></li>
+					</ul>
+				</li>
+				<li><a href="complete.html">完善信息</a></li>
+				<li><a href="save.html">发起救援</a></li>
+				<li style="float: right;"><a href="login.html">退出</a></li>
+				<li><a href="recording.html">发起记录</a></li>
+
+			</ul>
+		</div>
+		<div class="map">
+			<div class="p">我的位置</div>
+			<div class="map-body" id="container"></div>
+
+		</div>
+
+		<div class="send">
+			当前地址 <input type="text" id="begin" style="height:30px;width: 200px;font-size:25px"> <br> <br>
+			目的地址 <input type="text" id="end" style="height:30px;width: 200px;font-size:25px"> <br>
+			<input type="button" id="btn" value="提交" onclick="send()">
+
+		</div>
+	</div>
+</body>
+
+<script>
+	var map;
+	map = new AMap.Map("container", {
+		resizeEnable: true,
+		zoom: 12, //缩放级别
+		center: [112.938882, 28.228304], //中心点坐标-长沙
+	});
+	
+
+	function send() {
+		
+		var route;
+		
+		var begin = $("#begin").val();
+		var end = $("#end").val();
+		console.log(begin);
+		if(begin == "" || end == ""){
+			
+			alert("地址不能为空！");
+		} else{
+			//绘制初始路径
+			var path = [];
+			path.push([112.936703, 28.160130]);
+			path.push([112.991260, 28.139728]);
+			
+
+			map.plugin("AMap.DragRoute", function () {
+				route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE); //构造拖拽导航类
+				route.search(); //查询导航路径并开启拖拽导航
+			});
+		}
+
+	}
+
+</script>
+
+</html>
